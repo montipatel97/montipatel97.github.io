@@ -25,7 +25,23 @@
  </div>
 </section>
 
-<section class="topics-section interview-section" id="questions">
+<section class="topics-section practice-mode">
+<div class="section-header"><p class="section-tag">PRACTICE MODE</p><h2>Pick your challenge</h2><p>Choose a difficulty, question type, or let Interview Ready surprise you.</p></div>
+<div class="practice-controls">
+<button class="filter-btn active" data-filter="all">All</button><button class="filter-btn" data-filter="easy">🟢 Easy</button><button class="filter-btn" data-filter="medium">🟡 Medium</button><button class="filter-btn" data-filter="hard">🔴 Hard</button><button class="filter-btn" data-filter="theory">🧠 Theory</button><button class="filter-btn" data-filter="query">💻 Query Writing</button><button id="randomQuestion" class="random-btn">🎲 Random Question</button>
+</div>
+<div class="question-card practice-card" id="practiceCard">
+<div class="practice-meta"><span id="difficultyBadge">🟡 Medium</span><span id="typeBadge">💻 Query Writing</span></div>
+<h3 id="practiceQuestion">Find the second-highest distinct salary from an employees table.</h3>
+<p id="practiceHint">Think about ties: should two employees with the same salary create multiple ranks?</p>
+<details><summary>Show answer +</summary><div id="practiceAnswer" class="answer-content"><pre><code>WITH ranked AS (
+ SELECT salary, DENSE_RANK() OVER (ORDER BY salary DESC) AS rnk
+ FROM employees
+)
+SELECT DISTINCT salary
+FROM ranked
+WHERE rnk = 2;</code></pre><p><strong>Why:</strong> DENSE_RANK handles duplicate salaries correctly when the question asks for the second-highest distinct value.</p></div></details>
+</div></section><section class="topics-section interview-section" id="questions">
  <div class="interview-list">
 
 <section class="question-cluster" id="fundamentals"><div class="cluster-heading"><span>01</span><div><p>CORE SQL</p><h2>Fundamentals & concepts</h2></div></div>
@@ -180,4 +196,30 @@ WHERE rn = 1;</code></pre></div>
 
 </div></section>
 <footer><div class="logo">Interview<span>Ready</span></div><p>Learn. Practice. Collaborate. Get Interview Ready. 🚀</p><p class="copyright">© 2026 Interview Ready</p></footer>
-</body></html>
+<script>
+const questions=[
+{d:'easy',t:'query',q:'Find all customers who have never placed an order.',h:'Preserve all customers and identify rows with no match.',a:'SELECT c.* FROM customers c LEFT JOIN orders o ON c.customer_id=o.customer_id WHERE o.customer_id IS NULL;',why:'A LEFT JOIN preserves customers; NULL on the order side identifies unmatched customers.'},
+{d:'easy',t:'theory',q:'What is the difference between WHERE and HAVING?',h:'Think about when filtering happens.',a:'WHERE filters rows before GROUP BY. HAVING filters groups after aggregation.',why:'Use WHERE early whenever possible to reduce rows before aggregation.'},
+{d:'medium',t:'query',q:'Find the top 3 earners in every department.',h:'Each department needs its own ranking.',a:'WITH x AS (SELECT *, DENSE_RANK() OVER (PARTITION BY department ORDER BY salary DESC) r FROM employees) SELECT * FROM x WHERE r <= 3;',why:'PARTITION BY restarts ranking for each department.'},
+{d:'medium',t:'query',q:'Calculate month-over-month revenue growth.',h:'Compare each month with the previous month.',a:'SELECT month, revenue, revenue - LAG(revenue) OVER (ORDER BY month) AS growth FROM monthly_revenue;',why:'LAG reads the previous ordered row without a self join.'},
+{d:'medium',t:'theory',q:'ROW_NUMBER vs RANK vs DENSE_RANK?',h:'Focus on what happens after ties.',a:'ROW_NUMBER gives unique numbers. RANK leaves gaps after ties. DENSE_RANK does not leave gaps.',why:'Choose based on whether ties must share rank and whether gaps matter.'},
+{d:'hard',t:'query',q:'Find users with 3 or more consecutive days of activity.',h:'This is a classic gaps-and-islands problem.',a:'WITH d AS (SELECT DISTINCT user_id, activity_date FROM activity), x AS (SELECT user_id, activity_date, activity_date - ROW_NUMBER() OVER (PARTITION BY user_id ORDER BY activity_date) * INTERVAL \'1 day\' grp FROM d) SELECT user_id FROM x GROUP BY user_id, grp HAVING COUNT(*) >= 3;',why:'Subtracting row number creates the same grouping key for consecutive dates. Date syntax varies by SQL dialect.'},
+{d:'hard',t:'query',q:'Sessionize events using a 30-minute inactivity gap.',h:'Compare each event timestamp to the previous event for the same user.',a:'Use LAG(event_time) PARTITION BY user_id ORDER BY event_time, flag gaps > 30 minutes, then take a cumulative SUM of the flag to create session ids.',why:'The pattern combines LAG, CASE and a running SUM.'}
+];
+const badge={easy:'🟢 Easy',medium:'🟡 Medium',hard:'🔴 Hard'};
+let currentFilter='all';
+function showQuestion(q){
+ document.getElementById('difficultyBadge').textContent=badge[q.d];
+ document.getElementById('typeBadge').textContent=q.t==='theory'?'🧠 Theory':'💻 Query Writing';
+ document.getElementById('practiceQuestion').textContent=q.q;
+ document.getElementById('practiceHint').textContent=q.h;
+ document.getElementById('practiceAnswer').innerHTML='<pre><code>'+q.a.replace(/</g,'&lt;')+'</code></pre><p><strong>Why:</strong> '+q.why+'</p>';
+}
+document.querySelectorAll('.filter-btn').forEach(b=>b.addEventListener('click',()=>{
+ document.querySelectorAll('.filter-btn').forEach(x=>x.classList.remove('active'));b.classList.add('active');
+ currentFilter=b.dataset.filter;
+ const pool=currentFilter==='all'?questions:questions.filter(q=>q.d===currentFilter||q.t===currentFilter);
+ showQuestion(pool[Math.floor(Math.random()*pool.length)]);
+}));
+document.getElementById('randomQuestion').addEventListener('click',()=>{const pool=currentFilter==='all'?questions:questions.filter(q=>q.d===currentFilter||q.t===currentFilter);showQuestion(pool[Math.floor(Math.random()*pool.length)]);});
+</script></body></html>
