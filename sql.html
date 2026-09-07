@@ -1,286 +1,59 @@
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-```
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SQL | Interview Ready</title>
-
 <link rel="stylesheet" href="style.css">
-```
-
 </head>
-
 <body>
-
-```
-<!-- Navigation -->
 <nav class="navbar">
-
-    <a href="index.html" class="logo">
-        Interview<span>Ready</span>
-    </a>
-
-    <div class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="#topics">SQL Topics</a>
-    </div>
-
+  <a href="index.html" class="logo">Interview<span>Ready</span></a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="#topics">SQL Topics</a>
+    <a href="sql/interview-questions.html">Interview Q&A</a>
+  </div>
 </nav>
-
-
-<!-- Hero -->
-<section class="subject-hero">
-
-    <div class="hero-content">
-
-        <p class="tag">DATABASE FUNDAMENTALS</p>
-
-        <h1>
-            Master <span>SQL.</span>
-        </h1>
-
-        <p class="hero-description">
-            Learn SQL from fundamentals to advanced concepts,
-            practice real-world problems and prepare for
-            technical interviews.
-        </p>
-
-        <a href="#topics" class="primary-btn">
-            Explore SQL Topics ↓
-        </a>
-
+<section class="subject-hero sql-hero">
+  <div class="hero-content">
+    <p class="tag">DATABASE FUNDAMENTALS • INTERVIEW PREP</p>
+    <h1>Master <span>SQL.</span></h1>
+    <p class="hero-description">A complete roadmap from writing your first SELECT query to indexing, transactions, execution plans and performance optimization.</p>
+    <div class="hero-buttons">
+      <a href="#topics" class="primary-btn">Explore SQL Topics ↓</a>
+      <a href="sql/interview-questions.html" class="secondary-btn">Practice Interview Q&A</a>
     </div>
-
+  </div>
 </section>
-
-
-<!-- SQL Topics -->
-<section class="topics-section" id="topics">
-
-    <div class="section-header">
-
-        <p class="section-tag">SQL ROADMAP</p>
-
-        <h2>Choose A Topic</h2>
-
-        <p>
-            Start from the basics or jump directly into
-            the topic you want to practice.
-        </p>
-
-    </div>
-
-
-    <div class="topics-grid sql-grid">
-
-
-        <!-- SQL Basics -->
-        <a href="sql/basics.html" class="topic-card-link">
-
-            <div class="topic-card">
-
-                <div class="topic-icon">🗄️<a href="sql/schema-design.html" class="topic-card-link"><div class="topic-card"><div class="topic-icon">🧱</div><span class="topic-number">07</span><h3>Schema & Data Modeling</h3><p>Data types, commands, keys, constraints and relationships.</p><span class="explore-topic">Explore Schema & Data Modeling →</span></div></a>
-<a href="sql/normalization.html" class="topic-card-link"><div class="topic-card"><div class="topic-icon">🧩</div><span class="topic-number">08</span><h3>Normalization</h3><p>Dependencies, anomalies, 1NF, 2NF, 3NF, BCNF and denormalization.</p><span class="explore-topic">Explore Normalization →</span></div></a>
-<a href="sql/indexing.html" class="topic-card-link"><div class="topic-card"><div class="topic-icon">⚡</div><span class="topic-number">09</span><h3>Indexes</h3><p>B-tree, hash, composite, covering and index design.</p><span class="explore-topic">Explore Indexes →</span></div></a>
-<a href="sql/transactions.html" class="topic-card-link"><div class="topic-card"><div class="topic-icon">🔒</div><span class="topic-number">10</span><h3>Transactions & Concurrency</h3><p>ACID, isolation, locks, MVCC and deadlocks.</p><span class="explore-topic">Explore Transactions & Concurrency →</span></div></a>
-<a href="sql/optimization.html" class="topic-card-link"><div class="topic-card"><div class="topic-icon">🚀</div><span class="topic-number">11</span><h3>Query Optimization</h3><p>EXPLAIN, plans, sargability, joins and performance tuning.</p><span class="explore-topic">Explore Query Optimization →</span></div></a>
-<a href="sql/advanced-database.html" class="topic-card-link"><div class="topic-card"><div class="topic-icon">🏗️</div><span class="topic-number">12</span><h3>Database Objects & Advanced</h3><p>Views, materialized views, triggers, recursion, partitioning and security.</p><span class="explore-topic">Explore Database Objects & Advanced →</span></div></a></div>
-
-                <span class="topic-number">01</span>
-
-                <h3>SQL Basics</h3>
-
-                <p>
-                    SELECT, WHERE, DISTINCT,
-                    ORDER BY, LIMIT and aliases.
-                </p>
-
-                <span class="explore-topic">
-                    Start Learning →
-                </span>
-
-            </div>
-
-        </a>
-
-
-        <!-- Joins -->
-        <a href="sql/joins.html" class="topic-card-link">
-
-            <div class="topic-card">
-
-                <div class="topic-icon">🔗</div>
-
-                <span class="topic-number">02</span>
-
-                <h3>Joins</h3>
-
-                <p>
-                    INNER JOIN, LEFT JOIN,
-                    RIGHT JOIN and FULL OUTER JOIN.
-                </p>
-
-                <span class="explore-topic">
-                    Explore Joins →
-                </span>
-
-            </div>
-
-        </a>
-
-
-        <!-- Aggregations -->
-        <a href="sql/aggregations.html" class="topic-card-link">
-
-            <div class="topic-card">
-
-                <div class="topic-icon">📊</div>
-
-                <span class="topic-number">03</span>
-
-                <h3>Aggregations</h3>
-
-                <p>
-                    COUNT, SUM, AVG, MIN,
-                    MAX, GROUP BY and HAVING.
-                </p>
-
-                <span class="explore-topic">
-                    Explore Aggregations →
-                </span>
-
-            </div>
-
-        </a>
-
-
-        <!-- Window Functions -->
-        <a href="sql/window-functions.html" class="topic-card-link">
-
-            <div class="topic-card">
-
-                <div class="topic-icon">📈</div>
-
-                <span class="topic-number">04</span>
-
-                <h3>Window Functions</h3>
-
-                <p>
-                    ROW_NUMBER, RANK, LAG,
-                    LEAD and rolling calculations.
-                </p>
-
-                <span class="explore-topic">
-                    Explore Windows →
-                </span>
-
-            </div>
-
-        </a>
-
-
-        <!-- CTE -->
-        <a href="sql/cte-subqueries.html" class="topic-card-link">
-
-            <div class="topic-card">
-
-                <div class="topic-icon">🧩</div>
-
-                <span class="topic-number">05</span>
-
-                <h3>CTEs & Subqueries</h3>
-
-                <p>
-                    Common Table Expressions,
-                    recursive and correlated subqueries.
-                </p>
-
-                <span class="explore-topic">
-                    Explore CTEs →
-                </span>
-
-            </div>
-
-        </a>
-
-
-        <!-- Advanced -->
-        <a href="sql/advanced-sql.html" class="topic-card-link">
-
-            <div class="topic-card">
-
-                <div class="topic-icon">🚀</div>
-
-                <span class="topic-number">06</span>
-
-                <h3>Advanced SQL</h3>
-
-                <p>
-                    CASE WHEN, UNION, views,
-                    indexes, transactions and optimization.
-                </p>
-
-                <span class="explore-topic">
-                    Go Advanced →
-                </span>
-
-            </div>
-
-        </a>
-
-
-        <!-- Interview Questions -->
-        <a href="sql/interview-questions.html" class="topic-card-link">
-
-            <div class="topic-card interview-card">
-
-                <div class="topic-icon">💼</div>
-
-                <span class="topic-number">07</span>
-
-                <h3>Interview Questions</h3>
-
-                <p>
-                    Practice commonly asked SQL
-                    interview questions and scenarios.
-                </p>
-
-                <span class="explore-topic">
-                    Start Practicing →
-                </span>
-
-            </div>
-
-        </a>
-
-
-    </div>
-
+<section class="topics-section sql-topics-section" id="topics">
+  <div class="section-header">
+    <p class="section-tag">COMPLETE SQL ROADMAP</p>
+    <h2>Choose what you want to master</h2>
+    <p>Start with query fundamentals, then move into database design, indexing, transactions and performance. Every module is designed for learning plus interviews.</p>
+  </div>
+  <div class="topics-grid sql-grid"><a href="sql/basics.html" class="topic-card-link"><article class="topic-card "><div class="topic-icon">🗄️</div><span class="topic-number">01</span><h3>SQL Basics</h3><p>SELECT, WHERE, DISTINCT, ORDER BY, LIMIT and aliases.</p><span class="explore-topic">Start Learning →</span></article></a>
+<a href="sql/joins.html" class="topic-card-link"><article class="topic-card "><div class="topic-icon">🔗</div><span class="topic-number">02</span><h3>Joins</h3><p>INNER, LEFT, RIGHT and FULL OUTER JOIN with real examples.</p><span class="explore-topic">Explore Joins →</span></article></a>
+<a href="sql/aggregations.html" class="topic-card-link"><article class="topic-card "><div class="topic-icon">📊</div><span class="topic-number">03</span><h3>Aggregations</h3><p>COUNT, SUM, AVG, MIN, MAX, GROUP BY and HAVING.</p><span class="explore-topic">Explore Aggregations →</span></article></a>
+<a href="sql/window-functions.html" class="topic-card-link"><article class="topic-card "><div class="topic-icon">📈</div><span class="topic-number">04</span><h3>Window Functions</h3><p>ROW_NUMBER, RANK, LAG, LEAD and rolling calculations.</p><span class="explore-topic">Explore Windows →</span></article></a>
+<a href="sql/cte-subqueries.html" class="topic-card-link"><article class="topic-card "><div class="topic-icon">🧩</div><span class="topic-number">05</span><h3>CTEs & Subqueries</h3><p>CTEs, recursive queries and correlated subqueries.</p><span class="explore-topic">Explore CTEs →</span></article></a>
+<a href="sql/advanced-sql.html" class="topic-card-link"><article class="topic-card "><div class="topic-icon">🚀</div><span class="topic-number">06</span><h3>Advanced SQL</h3><p>CASE, UNION, views, complex query patterns and more.</p><span class="explore-topic">Go Advanced →</span></article></a>
+<a href="sql/schema-design.html" class="topic-card-link"><article class="topic-card "><div class="topic-icon">🧱</div><span class="topic-number">07</span><h3>Schema & Data Modeling</h3><p>Data types, commands, keys, constraints and relationships.</p><span class="explore-topic">Explore Schema Design →</span></article></a>
+<a href="sql/normalization.html" class="topic-card-link"><article class="topic-card "><div class="topic-icon">🧩</div><span class="topic-number">08</span><h3>Normalization</h3><p>Dependencies, anomalies, 1NF, 2NF, 3NF, BCNF and denormalization.</p><span class="explore-topic">Explore Normalization →</span></article></a>
+<a href="sql/indexing.html" class="topic-card-link"><article class="topic-card "><div class="topic-icon">⚡</div><span class="topic-number">09</span><h3>Indexes</h3><p>B-tree, hash, composite, covering indexes and index design.</p><span class="explore-topic">Explore Indexes →</span></article></a>
+<a href="sql/transactions.html" class="topic-card-link"><article class="topic-card "><div class="topic-icon">🔒</div><span class="topic-number">10</span><h3>Transactions & Concurrency</h3><p>ACID, isolation levels, locks, MVCC and deadlocks.</p><span class="explore-topic">Explore Transactions →</span></article></a>
+<a href="sql/optimization.html" class="topic-card-link"><article class="topic-card "><div class="topic-icon">🚀</div><span class="topic-number">11</span><h3>Query Optimization</h3><p>EXPLAIN, plans, sargability, joins and performance tuning.</p><span class="explore-topic">Optimize Queries →</span></article></a>
+<a href="sql/advanced-database.html" class="topic-card-link"><article class="topic-card "><div class="topic-icon">🏗️</div><span class="topic-number">12</span><h3>Database Objects & Advanced</h3><p>Views, materialized views, triggers, partitioning and security.</p><span class="explore-topic">Explore Advanced DB →</span></article></a>
+<a href="sql/interview-questions.html" class="topic-card-link"><article class="topic-card interview-card"><div class="topic-icon">💼</div><span class="topic-number">Q&A</span><h3>Interview Questions</h3><p>Practice theory, query writing and real interview scenarios.</p><span class="explore-topic">Start Practicing →</span></article></a></div>
 </section>
-
-
-<!-- Footer -->
+<section class="sql-study-tip">
+  <div><p class="section-tag">RECOMMENDED PATH</p><h2>For interviews: learn → write → explain → optimize.</h2><p>Don't just memorize syntax. Be able to explain why a query works, how the database executes it, and how you would improve it at scale.</p></div>
+  <a href="sql/interview-questions.html" class="primary-btn">Open SQL Interview Vault 🎯</a>
+</section>
 <footer>
-
-    <div class="logo">
-        Interview<span>Ready</span>
-    </div>
-
-    <p>
-        Learn. Practice. Collaborate. Get Interview Ready. 🚀
-    </p>
-
-    <p class="copyright">
-        © 2026 Interview Ready
-    </p>
-
+  <div class="logo">Interview<span>Ready</span></div>
+  <p>Learn. Practice. Collaborate. Get Interview Ready. 🚀</p>
+  <p class="copyright">© 2026 Interview Ready</p>
 </footer>
-```
-
 </body>
-
 </html>
