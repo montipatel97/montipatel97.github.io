@@ -565,3 +565,138 @@ MOBILE
 ```
 
 }
+
+
+/* =========================
+   SQL BASICS LEARNING PAGE
+========================= */
+
+.basics-layout {
+    display: grid;
+    grid-template-columns: 240px minmax(0, 1fr);
+    gap: 35px;
+    align-items: start;
+}
+
+.concept-menu {
+    position: sticky;
+    top: 100px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.concept-menu a {
+    text-decoration: none;
+    color: #94a3b8;
+    background: #111827;
+    border: 1px solid #1f2937;
+    padding: 13px 15px;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+.concept-menu a:hover {
+    color: #ffffff;
+    border-color: #6c63ff;
+    transform: translateX(4px);
+}
+
+.lesson-content {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.lesson-card,
+.quick-practice {
+    background: #111827;
+    border: 1px solid #1f2937;
+    border-radius: 12px;
+    padding: 35px;
+}
+
+.lesson-card h2,
+.quick-practice h2 {
+    font-size: 30px;
+    margin: 10px 0 18px;
+}
+
+.lesson-card h4 {
+    margin: 24px 0 10px;
+    color: #e2e8f0;
+}
+
+.lesson-card p,
+.quick-practice li {
+    color: #cbd5e1;
+    line-height: 1.75;
+}
+
+.lesson-card pre {
+    background: #0b0f19;
+    border: 1px solid #263244;
+    border-radius: 10px;
+    padding: 18px;
+    overflow-x: auto;
+    margin: 12px 0 18px;
+}
+
+.lesson-card code,
+.quick-practice code {
+    color: #b9b4ff;
+    font-family: monospace;
+}
+
+.lesson-label {
+    color: #8b83ff;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+.lesson-note {
+    margin-top: 18px;
+    padding: 15px 18px;
+    background: rgba(108, 99, 255, 0.09);
+    border-left: 3px solid #6c63ff;
+    border-radius: 6px;
+}
+
+.quick-practice ol {
+    padding-left: 22px;
+    margin: 20px 0 30px;
+}
+
+.quick-practice li {
+    margin-bottom: 12px;
+}
+
+@media (max-width: 900px) {
+    .basics-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .concept-menu {
+        position: static;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 600px) {
+    .concept-menu {
+        grid-template-columns: 1fr;
+    }
+
+    .lesson-card,
+    .quick-practice {
+        padding: 24px 20px;
+    }
+
+    .lesson-card h2,
+    .quick-practice h2 {
+        font-size: 26px;
+    }
+}
