@@ -932,3 +932,32 @@ footer{background:#fff;color:#667085;border-top:1px solid #e5e7eb}
   .sql-study-tip { padding: 42px 5%; }
   .sql-study-tip h2 { font-size: 26px; }
 }
+
+
+/* =========================
+   SPARK ROADMAP & ARCHITECTURE
+========================= */
+.spark-hero {
+  background:
+    radial-gradient(circle at 80% 20%, rgba(255, 105, 80, .14), transparent 28%),
+    radial-gradient(circle at 68% 78%, rgba(255, 184, 77, .12), transparent 30%),
+    linear-gradient(180deg,#ffffff 0%,#fffaf7 100%);
+}
+.spark-hero h1 span { color:#e85d3f; }
+.spark-grid .topic-card:hover { border-color:#f4b183; box-shadow:0 18px 38px rgba(232,93,63,.11); }
+.spark-grid .explore-topic { color:#c8543b; }
+.spark-path {
+  max-width:1180px; margin:-30px auto 0; padding:24px 30px;
+  background:#fff; border:1px solid #eceff3; border-radius:18px;
+  box-shadow:0 12px 35px rgba(15,23,42,.07);
+  display:flex; align-items:center; justify-content:space-between; gap:18px;
+  position:relative; z-index:2;
+}
+.path-step{display:flex;align-items:center;gap:13px}.path-step>span{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:#fff1ec;color:#d45537;font-weight:800}.path-step strong{display:block;color:#202938;font-size:14px}.path-step small{color:#7a8494;font-size:12px}.path-arrow{color:#c5cad3;font-size:22px}
+.spark-study-tip,.python-study-tip{padding:55px 8%;display:flex;align-items:center;justify-content:space-between;gap:35px;background:#fff;border-top:1px solid #eef0f4}.spark-study-tip h2,.python-study-tip h2{color:#111827;margin:8px 0 12px;font-size:30px}.spark-study-tip p:not(.section-tag),.python-study-tip p:not(.section-tag){color:#667085;line-height:1.7;max-width:760px}
+.architecture-flow{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:22px 0;padding:18px;border-radius:12px;background:#fff7f3;border:1px solid #fde2d6}.architecture-flow div{background:#fff;border:1px solid #f4c9b9;color:#8a3b2a;border-radius:9px;padding:10px 14px;font-weight:700;font-size:13px}.architecture-flow span{color:#d46a4e;font-weight:800}
+.lesson-card ul,.lesson-card ol{padding-left:24px;color:#667085;line-height:1.8;margin:14px 0}.lesson-card li{margin-bottom:6px}.lesson-card em{color:#b44b35;font-style:normal;font-weight:700}.lesson-card strong{color:#344054}.myth-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:18px}.myth-grid>div{padding:15px;border-radius:10px;background:#fff8f5;border:1px solid #fde0d5;color:#8d422f;line-height:1.6}.myth-grid span{color:#667085}
+.architecture-qa .qa{background:#fff8f5;border-color:#f9d6ca}.architecture-qa .qa h4{color:#8f3f2c}
+.coming-link{cursor:default}.coming-link .topic-card{opacity:.8}.coming-link .topic-card:hover{transform:none}
+@media(max-width:900px){.spark-path{margin:0 5%;flex-direction:column;align-items:flex-start}.path-arrow{transform:rotate(90deg);margin-left:14px}.myth-grid{grid-template-columns:1fr}}
+@media(max-width:700px){.spark-study-tip,.python-study-tip{flex-direction:column;align-items:flex-start;padding:42px 5%}.architecture-flow{gap:7px}.architecture-flow div{width:100%;text-align:center}.architecture-flow span{width:100%;text-align:center;transform:rotate(90deg)}}
