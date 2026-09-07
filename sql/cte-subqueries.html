@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>CTEs & Subqueries | Interview Ready</title><link rel="stylesheet" href="../style.css"></head>
+<body>
+<nav class="navbar"><a href="../index.html" class="logo">Interview<span>Ready</span></a><div class="nav-links"><a href="../index.html">Home</a><a href="../sql.html">SQL</a></div></nav>
+<section class="subject-hero"><div class="hero-content"><p class="tag">SQL ROADMAP • LEVEL 05</p><h1>Master <span>CTEs & Subqueries.</span></h1><p class="hero-description">Break complex SQL into understandable steps and understand when a subquery is evaluated.</p><a href="#concepts" class="primary-btn">Start Learning ↓</a></div></section>
+<section class="topics-section" id="concepts"><div class="section-header"><p class="section-tag">SQL ROADMAP</p><h2>Concepts, examples & interview practice</h2><p>Every section has a quick explanation, SQL examples and common interview questions with answers.</p></div>
+<div class="basics-layout"><aside class="concept-menu"><a href="#cte">01 CTE</a><a href="#recursive">02 Recursive CTE</a><a href="#scalar">03 Scalar subquery</a><a href="#correlated">04 Correlated subquery</a><a href="#exists">05 EXISTS</a></aside><main class="lesson-content"><article class="lesson-card" id="cte"><span class="lesson-label">01 • NAMED QUERY STEP</span><h2>Common Table Expression</h2><p>A CTE is a named temporary result used by the statement that follows it.</p><h4>Syntax / pattern</h4><pre><code>WITH name AS (
+  SELECT ...
+)
+SELECT ... FROM name;</code></pre><h4>Example</h4><pre><code>WITH dept_avg AS (
+ SELECT department, AVG(salary) AS avg_salary
+ FROM employees GROUP BY department
+)
+SELECT * FROM dept_avg;</code></pre><div class="qa-list"><div class="qa"><h4>🎯 Interview question: CTE vs subquery?</h4><p><strong>Answer:</strong> Both can structure logic; CTEs are often easier to read and reuse within one statement.</p></div><div class="qa"><h4>🎯 Interview question: Is a CTE always faster?</h4><p><strong>Answer:</strong> No. Performance depends on the database optimizer and query; readability is usually the main reason to use one.</p></div></div></article><article class="lesson-card" id="recursive"><span class="lesson-label">02 • HIERARCHIES</span><h2>Recursive CTE</h2><p>A recursive CTE repeatedly combines an anchor query with rows produced from earlier iterations.</p><h4>Syntax / pattern</h4><pre><code>WITH RECURSIVE cte AS (
+ anchor_query
+ UNION ALL
+ recursive_query
+) SELECT * FROM cte;</code></pre><h4>Example</h4><pre><code>WITH RECURSIVE org AS (
+ SELECT id, name, manager_id, 1 AS lvl FROM employees WHERE manager_id IS NULL
+ UNION ALL
+ SELECT e.id, e.name, e.manager_id, o.lvl + 1
+ FROM employees e JOIN org o ON e.manager_id = o.id
+) SELECT * FROM org;</code></pre><div class="qa-list"><div class="qa"><h4>🎯 Interview question: Typical use?</h4><p><strong>Answer:</strong> Hierarchies such as org charts, category trees and parent-child structures.</p></div><div class="qa"><h4>🎯 Interview question: Why is UNION ALL commonly used?</h4><p><strong>Answer:</strong> It avoids duplicate elimination overhead and is generally appropriate for recursive traversal.</p></div></div></article><article class="lesson-card" id="scalar"><span class="lesson-label">03 • SINGLE VALUE</span><h2>Scalar subquery</h2><p>A scalar subquery returns one value and can be used in SELECT, WHERE or expressions.</p><h4>Syntax / pattern</h4><pre><code>SELECT ... WHERE value > (SELECT AVG(value) FROM table);</code></pre><h4>Example</h4><pre><code>SELECT name, salary
+FROM employees
+WHERE salary > (SELECT AVG(salary) FROM employees);</code></pre><div class="qa-list"><div class="qa"><h4>🎯 Interview question: What happens if a scalar subquery returns multiple rows?</h4><p><strong>Answer:</strong> Most databases raise an error because a single value was expected.</p></div><div class="qa"><h4>🎯 Interview question: When is it useful?</h4><p><strong>Answer:</strong> Comparing each row against a global aggregate or single lookup value.</p></div></div></article><article class="lesson-card" id="correlated"><span class="lesson-label">04 • ROW-BY-ROW DEPENDENCY</span><h2>Correlated subquery</h2><p>A correlated subquery references the outer query, so its result depends on the current outer row.</p><h4>Syntax / pattern</h4><pre><code>SELECT ... FROM a x
+WHERE value > (SELECT AVG(value) FROM a y WHERE y.group = x.group);</code></pre><h4>Example</h4><pre><code>SELECT e.name, e.salary
+FROM employees e
+WHERE e.salary > (
+ SELECT AVG(e2.salary)
+ FROM employees e2
+ WHERE e2.department = e.department
+);</code></pre><div class="qa-list"><div class="qa"><h4>🎯 Interview question: Why can correlated subqueries be expensive?</h4><p><strong>Answer:</strong> The logical dependency can require repeated evaluation, although optimizers may rewrite the plan.</p></div><div class="qa"><h4>🎯 Interview question: Alternative?</h4><p><strong>Answer:</strong> A GROUP BY/CTE or window function may express the same problem more efficiently.</p></div></div></article><article class="lesson-card" id="exists"><span class="lesson-label">05 • CHECK FOR MATCHES</span><h2>EXISTS & NOT EXISTS</h2><p>EXISTS tests whether a subquery returns at least one row.</p><h4>Syntax / pattern</h4><pre><code>WHERE EXISTS (SELECT 1 FROM ... WHERE ...)</code></pre><h4>Example</h4><pre><code>SELECT c.customer_name
+FROM customers c
+WHERE EXISTS (
+ SELECT 1 FROM orders o WHERE o.customer_id = c.customer_id
+);</code></pre><div class="qa-list"><div class="qa"><h4>🎯 Interview question: EXISTS vs IN?</h4><p><strong>Answer:</strong> Both can express membership; EXISTS is often natural for correlated existence checks. NULL behavior can make IN/NOT IN tricky.</p></div><div class="qa"><h4>🎯 Interview question: Why is NOT EXISTS safer than NOT IN with NULLs?</h4><p><strong>Answer:</strong> NOT IN can behave unexpectedly if the subquery contains NULL; NOT EXISTS avoids that particular three-valued logic issue.</p></div></div></article></main></div></section>
+<footer><div class="logo">Interview<span>Ready</span></div><p>Learn. Practice. Collaborate. Get Interview Ready. 🚀</p><p class="copyright">© 2026 Interview Ready</p></footer></body></html>
