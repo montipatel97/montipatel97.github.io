@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SQL Basics | Interview Ready</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<nav class="navbar">
+  <a href="../index.html" class="logo">Interview<span>Ready</span></a>
+  <div class="nav-links">
+    <a href="../index.html">Home</a>
+    <a href="../sql.html">SQL</a>
+  </div>
+</nav>
+
+<section class="subject-hero">
+  <div class="hero-content">
+    <p class="tag">SQL ROADMAP • LEVEL 01</p>
+    <h1>SQL <span>Basics.</span></h1>
+    <p class="hero-description">Build a strong foundation with the most important SQL clauses. Each topic includes a simple explanation, syntax, examples and an interview-focused tip.</p>
+    <a href="#concepts" class="primary-btn">Start Learning ↓</a>
+  </div>
+</section>
+
+<section class="topics-section" id="concepts">
+  <div class="section-header">
+    <p class="section-tag">CORE CONCEPTS</p>
+    <h2>Learn the fundamentals</h2>
+    <p>Click any concept to jump directly to its explanation and examples.</p>
+  </div>
+
+  <div class="basics-layout">
+    <aside class="concept-menu">
+      <a href="#select">01 SELECT</a>
+      <a href="#where">02 WHERE</a>
+      <a href="#distinct">03 DISTINCT</a>
+      <a href="#order-by">04 ORDER BY</a>
+      <a href="#limit">05 LIMIT</a>
+      <a href="#aliases">06 Aliases</a>
+    </aside>
+
+    <main class="lesson-content">
+      <article class="lesson-card" id="select">
+        <span class="lesson-label">01 • SQL FUNDAMENTALS</span>
+        <h2>SELECT</h2>
+        <p><strong>SELECT</strong> is used to choose which columns or expressions you want to retrieve from a table.</p>
+        <h4>Syntax</h4>
+        <pre><code>SELECT column1, column2
+FROM table_name;</code></pre>
+        <h4>Example</h4>
+        <pre><code>SELECT employee_name, salary
+FROM employees;</code></pre>
+        <p class="lesson-note">💡 <strong>Interview tip:</strong> <code>SELECT *</code> returns every column, but explicitly selecting required columns is usually clearer and more efficient.</p>
+      </article>
+
+      <article class="lesson-card" id="where">
+        <span class="lesson-label">02 • FILTERING DATA</span>
+        <h2>WHERE</h2>
+        <p><strong>WHERE</strong> filters rows before the final result is returned.</p>
+        <h4>Syntax</h4>
+        <pre><code>SELECT column1, column2
+FROM table_name
+WHERE condition;</code></pre>
+        <h4>Example</h4>
+        <pre><code>SELECT employee_name, salary
+FROM employees
+WHERE salary &gt; 50000;</code></pre>
+        <p>You can combine conditions with <code>AND</code>, <code>OR</code> and <code>NOT</code>.</p>
+        <pre><code>SELECT *
+FROM employees
+WHERE department = 'Engineering'
+  AND salary &gt;= 70000;</code></pre>
+        <p class="lesson-note">💡 <strong>Remember:</strong> <code>WHERE</code> filters rows, while <code>HAVING</code> filters groups after aggregation.</p>
+      </article>
+
+      <article class="lesson-card" id="distinct">
+        <span class="lesson-label">03 • UNIQUE VALUES</span>
+        <h2>DISTINCT</h2>
+        <p><strong>DISTINCT</strong> removes duplicate rows from the selected result.</p>
+        <h4>Example</h4>
+        <pre><code>SELECT DISTINCT department
+FROM employees;</code></pre>
+        <p>For multiple columns, uniqueness is evaluated using the combination of all selected columns.</p>
+        <pre><code>SELECT DISTINCT department, job_title
+FROM employees;</code></pre>
+        <p class="lesson-note">💡 <strong>Interview tip:</strong> Be ready to explain the difference between <code>DISTINCT</code> and using <code>GROUP BY</code> to obtain unique combinations.</p>
+      </article>
+
+      <article class="lesson-card" id="order-by">
+        <span class="lesson-label">04 • SORTING RESULTS</span>
+        <h2>ORDER BY</h2>
+        <p><strong>ORDER BY</strong> sorts the final result set. Use <code>ASC</code> for ascending order and <code>DESC</code> for descending order.</p>
+        <h4>Example</h4>
+        <pre><code>SELECT employee_name, salary
+FROM employees
+ORDER BY salary DESC;</code></pre>
+        <p>You can sort by multiple columns.</p>
+        <pre><code>SELECT employee_name, department, salary
+FROM employees
+ORDER BY department ASC, salary DESC;</code></pre>
+        <p class="lesson-note">💡 <strong>Common mistake:</strong> SQL does not guarantee row order unless you explicitly use <code>ORDER BY</code>.</p>
+      </article>
+
+      <article class="lesson-card" id="limit">
+        <span class="lesson-label">05 • RESTRICTING RESULTS</span>
+        <h2>LIMIT</h2>
+        <p><strong>LIMIT</strong> restricts the number of rows returned in SQL dialects that support it, such as PostgreSQL and MySQL.</p>
+        <h4>Example</h4>
+        <pre><code>SELECT *
+FROM employees
+ORDER BY salary DESC
+LIMIT 5;</code></pre>
+        <p>This returns the top 5 rows after sorting.</p>
+        <p class="lesson-note">💡 <strong>Dialect note:</strong> SQL Server commonly uses <code>TOP</code>, while other databases may use <code>FETCH FIRST</code>.</p>
+      </article>
+
+      <article class="lesson-card" id="aliases">
+        <span class="lesson-label">06 • RENAMING OUTPUT</span>
+        <h2>Aliases</h2>
+        <p>An alias gives a temporary name to a column or table, making queries easier to read.</p>
+        <h4>Column alias</h4>
+        <pre><code>SELECT employee_name AS name,
+       salary AS annual_salary
+FROM employees;</code></pre>
+        <h4>Table alias</h4>
+        <pre><code>SELECT e.employee_name,
+       e.salary
+FROM employees AS e;</code></pre>
+        <p class="lesson-note">💡 <strong>Interview tip:</strong> Table aliases become especially useful in joins and self-joins.</p>
+      </article>
+
+      <section class="quick-practice">
+        <span class="lesson-label">QUICK PRACTICE</span>
+        <h2>Try these yourself</h2>
+        <ol>
+          <li>Return only the unique department names from an <code>employees</code> table.</li>
+          <li>Find employees earning more than 75,000.</li>
+          <li>Return the 10 highest-paid employees.</li>
+          <li>Display employee names as <code>name</code> and salaries as <code>salary_amount</code>.</li>
+        </ol>
+        <a href="../sql.html" class="secondary-btn">← Back to SQL Roadmap</a>
+      </section>
+    </main>
+  </div>
+</section>
+
+<footer>
+  <div class="logo">Interview<span>Ready</span></div>
+  <p>Learn. Practice. Collaborate. Get Interview Ready. 🚀</p>
+  <p class="copyright">© 2026 Interview Ready</p>
+</footer>
+</body>
+</html>
