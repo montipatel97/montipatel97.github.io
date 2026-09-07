@@ -700,3 +700,10 @@ MOBILE
         font-size: 26px;
     }
 }
+
+
+/* Interview Q&A blocks */
+.qa-list { margin-top: 24px; display: grid; gap: 14px; }
+.qa { padding: 18px; border: 1px solid rgba(108,99,255,.28); border-radius: 10px; background: rgba(108,99,255,.05); }
+.qa h4 { margin: 0 0 8px; color: #e2e8f0; }
+.qa p { margin: 0; }
