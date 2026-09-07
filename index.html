@@ -1,203 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Interview Ready | Learn. Practice. Succeed.</title>
-
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Interview Ready | Data Engineering Interview Prep</title>
+<link rel="stylesheet" href="style.css">
 </head>
+<body class="home-page">
+<nav class="navbar home-nav">
+  <a class="logo home-logo" href="index.html">Interview<span>Ready</span></a>
+  <div class="nav-links home-nav-links">
+    <a href="#topics">Learning Paths</a>
+    <a href="#resources">Quick Start</a>
+  </div>
+</nav>
 
-<body>
+<main>
+<section class="home-hero">
+  <div class="home-hero-copy">
+    <div class="home-eyebrow"><span></span> DATA ENGINEERING INTERVIEW PREP</div>
+    <h1>Learn the skills.<br><em>Crack the interview.</em></h1>
+    <p>A structured place for SQL, Python, PySpark and AWS—built around concepts, real examples, coding practice and interview questions.</p>
+    <div class="home-hero-actions">
+      <a href="#topics" class="home-primary">Start learning <b>→</b></a>
+      <a href="#resources" class="home-text-btn">See quick paths ↓</a>
+    </div>
+  </div>
+  <div class="home-hero-panel">
+    <div class="home-panel-top"><span>YOUR ROADMAP</span><b>01 — 04</b></div>
+    <div class="home-roadmap-row"><span class="roadmap-icon">🗄️</span><div><b>SQL</b><small>Query & think</small></div><i>✓</i></div>
+    <div class="home-roadmap-row"><span class="roadmap-icon">🐍</span><div><b>Python</b><small>Code & solve</small></div><i>✓</i></div>
+    <div class="home-roadmap-row"><span class="roadmap-icon">⚡</span><div><b>PySpark</b><small>Process at scale</small></div><i>✓</i></div>
+    <div class="home-roadmap-row"><span class="roadmap-icon">☁️</span><div><b>AWS</b><small>Build in the cloud</small></div><i>✓</i></div>
+  </div>
+</section>
 
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="logo">Interview<span>Ready</span></div>
+<section class="home-topics" id="topics">
+  <div class="home-section-heading">
+    <div><p>LEARNING PATHS</p><h2>Pick a topic and start.</h2></div>
+    <span>Everything is organized for <b>learning + interviews</b>.</span>
+  </div>
 
-        <div class="nav-links">
-            <a href="#home">Home</a>
-            <a href="#topics">Topics</a>
-            <a href="#resources">Resources</a>
-        </div>
-    </nav>
+  <div class="home-topic-grid">
+    <a href="sql.html" class="home-topic-card sql-card">
+      <div class="home-card-head"><span class="home-card-icon">🗄️</span><span class="home-card-status">COMPLETE PATH</span></div>
+      <h3>SQL</h3><p>Basics, joins, aggregations, windows, CTEs, indexing, optimization and interview questions.</p>
+      <div class="home-card-footer"><span>Explore SQL</span><b>→</b></div>
+    </a>
+    <a href="python.html" class="home-topic-card python-card">
+      <div class="home-card-head"><span class="home-card-icon">🐍</span><span class="home-card-status">COMPLETE PATH</span></div>
+      <h3>Python</h3><p>Core concepts, data structures, OOP, advanced Python and coding interview patterns.</p>
+      <div class="home-card-footer"><span>Explore Python</span><b>→</b></div>
+    </a>
+    <a href="spark.html" class="home-topic-card spark-card">
+      <div class="home-card-head"><span class="home-card-icon">⚡</span><span class="home-card-status">COMPLETE PATH</span></div>
+      <h3>PySpark</h3><p>Architecture, jobs, stages, shuffle, joins, tuning, streaming and hands-on coding.</p>
+      <div class="home-card-footer"><span>Explore PySpark</span><b>→</b></div>
+    </a>
+    <a href="aws.html" class="home-topic-card aws-card">
+      <div class="home-card-head"><span class="home-card-icon">☁️</span><span class="home-card-status">COMPLETE PATH</span></div>
+      <h3>AWS</h3><p>S3, IAM, Glue, Athena, Redshift, EMR, orchestration, monitoring and architecture.</p>
+      <div class="home-card-footer"><span>Explore AWS</span><b>→</b></div>
+    </a>
+  </div>
+</section>
 
+<section class="home-start" id="resources">
+  <div class="home-start-intro"><p>NOT SURE WHERE TO BEGIN?</p><h2>Start with your immediate goal.</h2></div>
+  <div class="home-start-grid">
+    <a href="sql.html" class="home-start-card"><span>01</span><div><b>Strengthen SQL for interviews</b><small>Joins, windows, CTEs & practice</small></div><i>→</i></a>
+    <a href="spark.html" class="home-start-card"><span>02</span><div><b>Master Spark & PySpark</b><small>Concepts, internals & coding</small></div><i>→</i></a>
+    <a href="aws.html" class="home-start-card"><span>03</span><div><b>Prepare AWS for Data Engineering</b><small>Services, architecture & scenarios</small></div><i>→</i></a>
+  </div>
+</section>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
+<section class="home-coming">
+  <div><p>COMING NEXT</p><h2>More Data Engineering topics are on the way.</h2></div>
+  <span>Data Warehousing · ETL · System Design · Kafka · Airflow</span>
+</section>
+</main>
 
-        <div class="hero-content">
-            <p class="tag">🚀 PREPARE SMARTER</p>
-
-            <h1>
-                Everything You Need To Be
-                <span>Interview Ready.</span>
-            </h1>
-
-            <p class="hero-description">
-                A collaborative platform for learning SQL, Python, Apache Spark,
-                AWS, Data Engineering and preparing for technical interviews.
-            </p>
-
-            <div class="hero-buttons">
-                <a href="#topics" class="primary-btn">Explore Topics →</a>
-                <a href="#resources" class="secondary-btn">View Resources</a>
-            </div>
-        </div>
-
-    </section>
-
-
-    <!-- Topics -->
-    <section class="topics-section" id="topics">
-
-        <div class="section-header">
-            <p class="section-tag">LEARNING PATHS</p>
-            <h2>Master The Skills That Matter</h2>
-
-            <p>
-                Structured resources to help you learn concepts,
-                practice questions and prepare for interviews.
-            </p>
-        </div>
-
-
-        <div class="topics-grid">
-
-            <div class="topic-card">
-                <div class="topic-icon">🗄️</div>
-                <h3>SQL</h3>
-                <p>
-                    Queries, joins, window functions, CTEs,
-                    interview questions and practice problems.
-                </p>
-                <a href="sql.html">Explore →</a>
-            </div>
-
-
-            <div class="topic-card">
-                <div class="topic-icon">⚡</div>
-                <h3>PySpark</h3>
-                <p>
-                    Spark architecture, transformations, actions,
-                    joins, optimization and interview preparation.
-                </p>
-                <a href="spark.html">Explore →</a>
-            </div>
-
-
-            <div class="topic-card">
-                <div class="topic-icon">☁️</div>
-                <h3>AWS</h3>
-                <p>
-                    Glue, S3, Lambda, DynamoDB,
-                    IAM, Step Functions and more.
-                </p>
-                <a href="#">Explore →</a>
-            </div>
-
-
-            <div class="topic-card">
-                <div class="topic-icon">🏗️</div>
-                <h3>Data Warehousing</h3>
-                <p>
-                    OLTP vs OLAP, ETL, dimensional modeling,
-                    fact tables and dimension tables.
-                </p>
-                <a href="#">Explore →</a>
-            </div>
-
-
-            <div class="topic-card">
-                <div class="topic-icon">💼</div>
-                <h3>Interview Prep</h3>
-                <p>
-                    Technical questions, HR questions,
-                    STAR stories and interview experiences.
-                </p>
-                <a href="#">Explore →</a>
-            </div>
-
-
-            <div class="topic-card coming-soon">
-                <div class="topic-icon">➕</div>
-                <h3>More Coming Soon</h3>
-                <p>
-                    New topics and resources will continuously
-                    be added by the community.
-                </p>
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- Resources -->
-    <section class="resources-section" id="resources">
-
-        <div class="section-header">
-            <p class="section-tag">START LEARNING</p>
-            <h2>Featured Resources</h2>
-        </div>
-
-
-        <div class="resource-list">
-
-            <div class="resource-card">
-                <div>
-                    <span class="resource-type">SQL</span>
-                    <h3>SQL Interview Preparation</h3>
-                    <p>Practice joins, window functions and advanced SQL concepts.</p>
-                </div>
-
-                <a class="arrow" href="sql.html">→</a>
-            </div>
-
-
-            <div class="resource-card">
-                <div>
-                    <span class="resource-type">PYSPARK</span>
-                    <h3>Apache Spark Concepts</h3>
-                    <p>Understand architecture, jobs, stages, tasks, shuffle and optimization.</p>
-                </div>
-
-                <a class="arrow" href="spark.html">→</a>
-            </div>
-
-
-            <div class="resource-card">
-                <div>
-                    <span class="resource-type">AWS</span>
-                    <h3>AWS Data Engineering</h3>
-                    <p>Important cloud services and common interview questions.</p>
-                </div>
-
-                <a class="arrow" href="aws.html">→</a>
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- Footer -->
-    <footer>
-
-        <div class="logo">Interview<span>Ready</span></div>
-
-        <p>
-            Learn. Practice. Collaborate. Get Interview Ready. 🚀
-        </p>
-
-        <p class="copyright">
-            © 2026 Interview Ready
-        </p>
-
-    </footer>
-
-
-    <script src="script.js"></script>
-
-</body>
-</html>
+<footer class="home-footer">
+  <a class="logo home-logo" href="index.html">Interview<span>Ready</span></a>
+  <p>Learn clearly. Practice deliberately. Get interview ready.</p>
+</footer>
+<script src="script.js"></script>
+</body></html>
