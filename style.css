@@ -445,3 +445,123 @@ footer p {
     }
 
 }
+
+/* =========================
+SUBJECT HERO
+========================= */
+
+.subject-hero {
+
+```
+min-height: 500px;
+
+display: flex;
+
+align-items: center;
+
+padding: 100px 8%;
+
+background:
+    radial-gradient(
+        circle at top right,
+        rgba(108, 99, 255, 0.25),
+        transparent 45%
+    );
+```
+
+}
+
+/* =========================
+CLICKABLE TOPIC CARDS
+========================= */
+
+.topic-card-link {
+
+```
+text-decoration: none;
+
+color: inherit;
+
+display: block;
+```
+
+}
+
+.topic-card-link .topic-card {
+
+```
+height: 100%;
+
+cursor: pointer;
+```
+
+}
+
+.topic-card-link:hover .topic-card {
+
+```
+transform: translateY(-8px);
+
+border-color: #6c63ff;
+
+box-shadow:
+    0 15px 40px
+    rgba(108, 99, 255, 0.12);
+```
+
+}
+
+.topic-number {
+
+```
+display: block;
+
+font-size: 12px;
+
+font-weight: 700;
+
+color: #6c63ff;
+
+margin-bottom: 10px;
+
+letter-spacing: 1px;
+```
+
+}
+
+.explore-topic {
+
+```
+color: #8b83ff;
+
+font-size: 14px;
+
+font-weight: 600;
+```
+
+}
+
+.interview-card {
+
+```
+border-color: rgba(108, 99, 255, 0.4);
+```
+
+}
+
+/* =========================
+MOBILE
+========================= */
+
+@media (max-width: 768px) {
+
+```
+.subject-hero {
+
+    padding: 80px 5%;
+
+    min-height: 450px;
+}
+```
+
+}
