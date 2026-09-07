@@ -864,3 +864,71 @@ footer{background:#fff;color:#667085;border-top:1px solid #e5e7eb}
 .practice-meta{display:flex;gap:8px;padding:20px 26px 0}.practice-meta span{font-size:12px;font-weight:700;background:#f2f4f7;padding:6px 10px;border-radius:20px}
 .practice-card>h3,.practice-card>p{padding:0 26px}.practice-card details{margin-top:20px;border-top:1px solid #eef0f4}.practice-card summary{padding:18px 26px;color:#4f46e5;font-weight:700;cursor:pointer}
 @media(max-width:700px){.random-btn{margin-left:0}.practice-controls{padding:0 5%}.practice-card{margin-left:5%;margin-right:5%}}
+
+
+/* =========================
+   SQL ROADMAP • READABILITY FIX
+========================= */
+.sql-hero { min-height: 440px; }
+.sql-topics-section { padding-top: 78px; padding-bottom: 90px; }
+.sql-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 22px;
+  align-items: stretch;
+}
+.sql-grid .topic-card-link { min-width: 0; }
+.sql-grid .topic-card {
+  min-height: 300px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 28px;
+  border-radius: 18px;
+}
+.sql-grid .topic-icon { font-size: 30px; margin-bottom: 18px; }
+.sql-grid .topic-number { color: #9f96ff; margin-bottom: 9px; }
+.sql-grid h3 {
+  color: #f5f7ff;
+  line-height: 1.25;
+  margin-bottom: 12px;
+}
+.sql-grid p {
+  color: #b8c2d9;
+  line-height: 1.65;
+  flex: 1;
+  margin-bottom: 20px;
+}
+.sql-grid .explore-topic {
+  display: inline-flex;
+  align-items: center;
+  color: #aaa5ff;
+  font-weight: 700;
+}
+.sql-grid .interview-card {
+  background: linear-gradient(145deg, rgba(68, 54, 126, .95), rgba(26, 33, 69, .98));
+  border-color: rgba(165, 148, 255, .35);
+}
+.sql-study-tip {
+  padding: 55px 8%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 35px;
+  background: rgba(255,255,255,.025);
+  border-top: 1px solid rgba(180,192,255,.12);
+}
+.sql-study-tip h2 { margin: 8px 0 12px; font-size: 30px; }
+.sql-study-tip p:not(.section-tag) { color: #b8c2d9; line-height: 1.7; max-width: 760px; }
+@media (max-width: 1200px) {
+  .sql-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (max-width: 900px) {
+  .sql-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .sql-study-tip { align-items: flex-start; flex-direction: column; }
+}
+@media (max-width: 600px) {
+  .sql-grid { grid-template-columns: 1fr; gap: 16px; }
+  .sql-grid .topic-card { min-height: 0; }
+  .sql-study-tip { padding: 42px 5%; }
+  .sql-study-tip h2 { font-size: 26px; }
+}
