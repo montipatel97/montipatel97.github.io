@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>SQL Interview Questions | Interview Ready</title><link rel="stylesheet" href="../style.css"></head>
+<body>
+<nav class="navbar"><a href="../index.html" class="logo">Interview<span>Ready</span></a><div class="nav-links"><a href="../index.html">Home</a><a href="../sql.html">SQL</a></div></nav>
+
+<section class="interview-hero">
+ <div class="hero-content">
+  <p class="tag">THE SQL INTERVIEW VAULT</p>
+  <h1>Practice like an <span>interview.</span></h1>
+  <p class="hero-description">High-yield SQL questions for data engineering and analytics interviews — theory, tricky scenarios, and query-writing problems with interview-ready answers.</p>
+  <div class="hero-buttons"><a href="#questions" class="primary-btn">Start Practicing ↓</a><a href="#quick-nav" class="secondary-btn">Browse Topics</a></div>
+ </div>
+ <div class="hero-orb orb-one"></div><div class="hero-orb orb-two"></div>
+</section>
+
+<section class="topics-section interview-section" id="quick-nav">
+ <div class="section-header"><p class="section-tag">CHOOSE YOUR BATTLE</p><h2>SQL Interview Topics</h2><p>Focus on the patterns that repeatedly appear in data-engineering interviews.</p></div>
+ <div class="interview-topic-grid">
+  <a href="#fundamentals">🧱<span>Fundamentals</span><small>Core concepts & traps</small></a>
+  <a href="#joins">🔗<span>Joins</span><small>Matching & anti joins</small></a>
+  <a href="#aggregation">📊<span>Aggregations</span><small>GROUP BY & HAVING</small></a>
+  <a href="#windows">📈<span>Window Functions</span><small>Ranking & rolling logic</small></a>
+  <a href="#ctes">🧩<span>CTEs & Subqueries</span><small>Multi-step queries</small></a>
+  <a href="#classic">🔥<span>Classic Problems</span><small>Must-solve queries</small></a>
+ </div>
+</section>
+
+<section class="topics-section interview-section" id="questions">
+ <div class="interview-list">
+
+<section class="question-cluster" id="fundamentals"><div class="cluster-heading"><span>01</span><div><p>CORE SQL</p><h2>Fundamentals & concepts</h2></div></div>
+<div class="question-card"><h3>What is the difference between WHERE and HAVING?</h3><p><strong>Interview answer:</strong> WHERE filters individual rows before aggregation. HAVING filters groups after GROUP BY and aggregation. Use WHERE whenever possible before grouping because it reduces the rows that need to be aggregated.</p><pre><code>SELECT department, COUNT(*) AS cnt
+FROM employees
+WHERE active = true
+GROUP BY department
+HAVING COUNT(*) > 10;</code></pre></div>
+<div class="question-card"><h3>What is the logical execution order of a SQL query?</h3><p><strong>Answer:</strong> A common logical order is FROM/JOIN → WHERE → GROUP BY → HAVING → SELECT → DISTINCT → ORDER BY → LIMIT/OFFSET. This explains why a SELECT alias usually cannot be referenced in WHERE.</p></div>
+<div class="question-card"><h3>COUNT(*) vs COUNT(column) vs COUNT(DISTINCT column)?</h3><p><strong>Answer:</strong> COUNT(*) counts rows. COUNT(column) counts non-NULL values. COUNT(DISTINCT column) counts unique non-NULL values.</p></div>
+</section>
+
+<section class="question-cluster" id="joins"><div class="cluster-heading"><span>02</span><div><p>TABLE RELATIONSHIPS</p><h2>Joins</h2></div></div>
+<div class="question-card"><h3>How do you find customers who never placed an order?</h3><pre><code>SELECT c.customer_id, c.customer_name
+FROM customers c
+LEFT JOIN orders o
+  ON c.customer_id = o.customer_id
+WHERE o.customer_id IS NULL;</code></pre><p><strong>Why it works:</strong> LEFT JOIN preserves every customer; NULL on the order side means no match. NOT EXISTS is another excellent answer.</p></div>
+<div class="question-card"><h3>Why can a LEFT JOIN accidentally behave like an INNER JOIN?</h3><p><strong>Answer:</strong> Filtering a right-table column in WHERE removes rows where the right side is NULL. Put optional right-table matching conditions inside the ON clause when you still need unmatched left rows.</p></div>
+<div class="question-card"><h3>What is an anti join?</h3><p><strong>Answer:</strong> It returns rows from one table that have no matching row in another. In standard SQL, it is commonly written using NOT EXISTS or LEFT JOIN ... WHERE right_key IS NULL.</p></div>
+</section>
+
+<section class="question-cluster" id="aggregation"><div class="cluster-heading"><span>03</span><div><p>SUMMARIZE DATA</p><h2>Aggregations</h2></div></div>
+<div class="question-card"><h3>Find the department with the highest average salary.</h3><pre><code>SELECT department, AVG(salary) AS avg_salary
+FROM employees
+GROUP BY department
+ORDER BY avg_salary DESC
+LIMIT 1;</code></pre><p><strong>Interview extension:</strong> If ties must all be returned, rank the grouped results with DENSE_RANK instead of LIMIT 1.</p></div>
+<div class="question-card"><h3>Can you use aggregate functions in WHERE?</h3><p><strong>Answer:</strong> Not directly at the same query level because WHERE runs before aggregation. Use HAVING or put the aggregation in a subquery/CTE.</p></div>
+<div class="question-card"><h3>Find duplicate records.</h3><pre><code>SELECT email, COUNT(*) AS occurrences
+FROM users
+GROUP BY email
+HAVING COUNT(*) > 1;</code></pre></div>
+</section>
+
+<section class="question-cluster" id="windows"><div class="cluster-heading"><span>04</span><div><p>HIGHEST-YIELD TOPIC</p><h2>Window Functions</h2></div></div>
+<div class="question-card"><h3>ROW_NUMBER vs RANK vs DENSE_RANK?</h3><p><strong>Answer:</strong> ROW_NUMBER always assigns unique sequential numbers. RANK gives ties the same rank and leaves gaps. DENSE_RANK gives ties the same rank without gaps. For second-highest <em>distinct</em> salary, DENSE_RANK is usually the safest choice.</p></div>
+<div class="question-card"><h3>Find the second highest distinct salary.</h3><pre><code>WITH ranked AS (
+  SELECT salary,
+         DENSE_RANK() OVER (ORDER BY salary DESC) AS rnk
+  FROM employees
+)
+SELECT DISTINCT salary
+FROM ranked
+WHERE rnk = 2;</code></pre><p><strong>Why interviewers like it:</strong> It tests ranking, ties and the difference between distinct values and distinct rows.</p></div>
+<div class="question-card"><h3>Find the top 3 earners in each department.</h3><pre><code>WITH ranked AS (
+  SELECT employee_name, department, salary,
+         DENSE_RANK() OVER (
+           PARTITION BY department
+           ORDER BY salary DESC
+         ) AS rnk
+  FROM employees
+)
+SELECT *
+FROM ranked
+WHERE rnk <= 3;</code></pre><p><strong>Trap:</strong> Use ROW_NUMBER when exactly three rows are required; use RANK/DENSE_RANK when ties should be preserved according to the business requirement.</p></div>
+<div class="question-card"><h3>Calculate a running total.</h3><pre><code>SELECT order_date,
+       amount,
+       SUM(amount) OVER (
+         ORDER BY order_date
+         ROWS BETWEEN UNBOUNDED PRECEDING
+                  AND CURRENT ROW
+       ) AS running_total
+FROM orders;</code></pre><p><strong>Answer to explain:</strong> The frame starts at the first row and ends at the current row, so the sum grows as rows progress.</p></div>
+<div class="question-card"><h3>Calculate a 7-day moving average.</h3><pre><code>SELECT order_date,
+       sales,
+       AVG(sales) OVER (
+         ORDER BY order_date
+         ROWS BETWEEN 6 PRECEDING
+                  AND CURRENT ROW
+       ) AS moving_avg
+FROM daily_sales;</code></pre><p><strong>Important:</strong> This is a 7-row moving average, not automatically a true calendar 7-day window when dates are missing. The exact implementation can vary by SQL dialect.</p></div>
+<div class="question-card"><h3>Calculate month-over-month growth using LAG.</h3><pre><code>SELECT month,
+       revenue,
+       revenue - LAG(revenue) OVER (ORDER BY month) AS growth,
+       100.0 * (revenue - LAG(revenue) OVER (ORDER BY month))
+       / NULLIF(LAG(revenue) OVER (ORDER BY month), 0) AS growth_pct
+FROM monthly_revenue;</code></pre><p><strong>Key point:</strong> NULLIF prevents division by zero.</p></div>
+<div class="question-card"><h3>Find employees earning above their department average.</h3><pre><code>WITH x AS (
+  SELECT employee_name, department, salary,
+         AVG(salary) OVER (
+           PARTITION BY department
+         ) AS dept_avg
+  FROM employees
+)
+SELECT *
+FROM x
+WHERE salary > dept_avg;</code></pre></div>
+</section>
+
+<section class="question-cluster" id="ctes"><div class="cluster-heading"><span>05</span><div><p>MULTI-STEP REASONING</p><h2>CTEs & Subqueries</h2></div></div>
+<div class="question-card"><h3>CTE vs subquery?</h3><p><strong>Answer:</strong> Both can represent an intermediate result. A CTE is often easier to read, name and chain into multiple logical steps. Performance is database- and optimizer-dependent; do not claim that a CTE is always faster.</p></div>
+<div class="question-card"><h3>Find employees earning above their department average using a correlated subquery.</h3><pre><code>SELECT e.employee_name, e.department, e.salary
+FROM employees e
+WHERE e.salary > (
+  SELECT AVG(e2.salary)
+  FROM employees e2
+  WHERE e2.department = e.department
+);</code></pre></div>
+<div class="question-card"><h3>EXISTS vs IN?</h3><p><strong>Answer:</strong> Both can test membership. EXISTS is especially natural for correlated existence checks. Be careful with NOT IN when the subquery can return NULL; NOT EXISTS is often safer and clearer.</p></div>
+</section>
+
+<section class="question-cluster" id="classic"><div class="cluster-heading"><span>06</span><div><p>MUST-SOLVE PATTERNS</p><h2>Classic SQL problems</h2></div></div>
+<div class="question-card"><h3>Delete duplicates while keeping one row.</h3><pre><code>WITH ranked AS (
+  SELECT id,
+         ROW_NUMBER() OVER (
+           PARTITION BY email
+           ORDER BY id
+         ) AS rn
+  FROM users
+)
+DELETE FROM users
+WHERE id IN (
+  SELECT id FROM ranked WHERE rn > 1
+);</code></pre><p><strong>Note:</strong> DELETE syntax differs across databases; in an interview, explain the ranking approach first.</p></div>
+<div class="question-card"><h3>Find consecutive login days.</h3><pre><code>WITH d AS (
+  SELECT DISTINCT user_id, login_date
+  FROM logins
+),
+x AS (
+  SELECT user_id, login_date,
+         login_date - ROW_NUMBER() OVER (
+           PARTITION BY user_id
+           ORDER BY login_date
+         ) * INTERVAL '1 day' AS grp
+  FROM d
+)
+SELECT user_id,
+       MIN(login_date) AS streak_start,
+       MAX(login_date) AS streak_end,
+       COUNT(*) AS days
+FROM x
+GROUP BY user_id, grp;</code></pre><p><strong>Pattern:</strong> This is a classic gaps-and-islands technique. Date arithmetic syntax varies by database.</p></div>
+<div class="question-card"><h3>Find the latest record for each customer.</h3><pre><code>WITH ranked AS (
+  SELECT *,
+         ROW_NUMBER() OVER (
+           PARTITION BY customer_id
+           ORDER BY updated_at DESC
+         ) AS rn
+  FROM customer_status
+)
+SELECT *
+FROM ranked
+WHERE rn = 1;</code></pre></div>
+<div class="question-card"><h3>Find duplicate rows and keep the latest one.</h3><p><strong>Approach:</strong> Use ROW_NUMBER() PARTITION BY the business key and ORDER BY updated_at DESC. Keep rn = 1; rows with rn > 1 are duplicates to remove or archive.</p></div>
+</section>
+
+</div></section>
+<footer><div class="logo">Interview<span>Ready</span></div><p>Learn. Practice. Collaborate. Get Interview Ready. 🚀</p><p class="copyright">© 2026 Interview Ready</p></footer>
+</body></html>
