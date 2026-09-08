@@ -1590,3 +1590,105 @@ h1, h2, h3, h4 { letter-spacing: -0.01em; }
   .lesson-card { padding: 22px !important; }
 }
 
+
+
+/* =====================================================
+   SQL INTERVIEW QUESTIONS — LAYOUT / DETAILS FIX
+   Keep every question as an independent, readable card.
+===================================================== */
+#questions .interview-list{
+  width:min(920px, calc(100% - 40px)) !important;
+  margin:0 auto !important;
+}
+#questions .question-cluster{
+  margin:0 0 52px !important;
+  padding:0 !important;
+  display:block !important;
+}
+#questions .cluster-heading{
+  display:flex !important;
+  align-items:center !important;
+  gap:16px !important;
+  margin:0 0 18px !important;
+  padding:0 !important;
+}
+#questions .cluster-heading > span{
+  flex:0 0 48px !important;
+  width:48px !important;
+  height:48px !important;
+  display:grid !important;
+  place-items:center !important;
+  border-radius:12px !important;
+  font-weight:800 !important;
+}
+#questions .cluster-heading > div{min-width:0 !important;}
+#questions .cluster-heading p{
+  margin:0 0 4px !important;
+  font-size:10px !important;
+  letter-spacing:1.4px !important;
+  font-weight:800 !important;
+}
+#questions .cluster-heading h2{
+  margin:0 !important;
+  font-size:28px !important;
+  line-height:1.15 !important;
+}
+#questions details.question-card{
+  display:block !important;
+  width:100% !important;
+  margin:0 0 12px !important;
+  overflow:hidden !important;
+  border-radius:14px !important;
+}
+#questions .question-summary{
+  min-height:62px !important;
+  width:100% !important;
+  box-sizing:border-box !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:space-between !important;
+  gap:22px !important;
+  padding:18px 24px !important;
+  cursor:pointer !important;
+  list-style:none !important;
+}
+#questions .question-summary::-webkit-details-marker{display:none !important;}
+#questions .question-summary h3{
+  flex:1 !important;
+  margin:0 !important;
+  font-size:15px !important;
+  line-height:1.45 !important;
+}
+#questions .reveal-answer{
+  flex:0 0 auto !important;
+  white-space:nowrap !important;
+  font-size:12px !important;
+  font-weight:800 !important;
+}
+#questions .question-card[open] .question-summary{
+  border-bottom:1px solid var(--border) !important;
+}
+#questions .answer-content{
+  width:100% !important;
+  box-sizing:border-box !important;
+  padding:18px 24px 20px !important;
+  margin:0 !important;
+  border-left:0 !important;
+}
+#questions .answer-content p{
+  margin:0 !important;
+  line-height:1.7 !important;
+}
+#questions .answer-content pre{
+  margin:0 0 12px !important;
+  width:100% !important;
+  box-sizing:border-box !important;
+}
+@media(max-width:640px){
+  #questions .interview-list{width:min(100% - 28px, 920px) !important;}
+  #questions .cluster-heading h2{font-size:24px !important;}
+  #questions .question-summary{padding:16px 17px !important;gap:12px !important;}
+  #questions .question-summary h3{font-size:14px !important;}
+  #questions .reveal-answer{font-size:10px !important;}
+  #questions .answer-content{padding:16px !important;}
+}
