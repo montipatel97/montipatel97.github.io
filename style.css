@@ -447,123 +447,63 @@ footer p {
 }
 
 /* =========================
-SUBJECT HERO
+   SUBJECT HERO
 ========================= */
-
 .subject-hero {
-
-```
-min-height: 500px;
-
-display: flex;
-
-align-items: center;
-
-padding: 100px 8%;
-
-background:
-    radial-gradient(
-        circle at top right,
-        rgba(108, 99, 255, 0.25),
-        transparent 45%
-    );
-```
-
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+    padding: 100px 8%;
+    background: radial-gradient(circle at top right, rgba(108, 99, 255, 0.25), transparent 45%);
 }
 
 /* =========================
-CLICKABLE TOPIC CARDS
+   CLICKABLE TOPIC CARDS
 ========================= */
-
 .topic-card-link {
-
-```
-text-decoration: none;
-
-color: inherit;
-
-display: block;
-```
-
+    text-decoration: none;
+    color: inherit;
+    display: block;
 }
 
 .topic-card-link .topic-card {
-
-```
-height: 100%;
-
-cursor: pointer;
-```
-
+    height: 100%;
+    cursor: pointer;
 }
 
 .topic-card-link:hover .topic-card {
-
-```
-transform: translateY(-8px);
-
-border-color: #6c63ff;
-
-box-shadow:
-    0 15px 40px
-    rgba(108, 99, 255, 0.12);
-```
-
+    transform: translateY(-8px);
+    border-color: #6c63ff;
+    box-shadow: 0 15px 40px rgba(108, 99, 255, 0.12);
 }
 
 .topic-number {
-
-```
-display: block;
-
-font-size: 12px;
-
-font-weight: 700;
-
-color: #6c63ff;
-
-margin-bottom: 10px;
-
-letter-spacing: 1px;
-```
-
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+    color: #6c63ff;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
 }
 
 .explore-topic {
-
-```
-color: #8b83ff;
-
-font-size: 14px;
-
-font-weight: 600;
-```
-
+    color: #8b83ff;
+    font-size: 14px;
+    font-weight: 600;
 }
 
 .interview-card {
-
-```
-border-color: rgba(108, 99, 255, 0.4);
-```
-
+    border-color: rgba(108, 99, 255, 0.4);
 }
 
 /* =========================
-MOBILE
+   MOBILE
 ========================= */
-
 @media (max-width: 768px) {
-
-```
-.subject-hero {
-
-    padding: 80px 5%;
-
-    min-height: 450px;
-}
-```
-
+    .subject-hero {
+        padding: 80px 5%;
+        min-height: 450px;
+    }
 }
 
 
@@ -1154,3 +1094,499 @@ footer{background:#fff;color:#667085;border-top:1px solid #e5e7eb}
 .svg-diagram-wrap{margin:22px 0;padding:14px;border-radius:14px;background:#fff;border:1px solid #f1d8cf;overflow-x:auto}
 .svg-diagram-wrap svg{width:100%;height:auto;display:block;min-width:640px}
 @media(max-width:700px){.svg-diagram-wrap{padding:10px}.svg-diagram-wrap svg{min-width:560px}}
+
+
+/* =========================================================
+   INTERVIEW READY � THEME SYSTEM + READABILITY REFRESH
+   (Appended layer � CSS variables drive both light & dark,
+    and fix the low-contrast question text on lesson pages.)
+========================================================= */
+
+:root,
+[data-theme="light"] {
+  --bg:            #f4f6fb;
+  --bg-alt:        #eef1f8;
+  --surface:       #ffffff;
+  --surface-2:     #f8f9fd;
+  --surface-3:     #eef1f8;
+  --border:        #e3e7ef;
+  --border-strong: #cdd3e2;
+  --text:          #182033;
+  --text-muted:    #58627a;
+  --text-soft:     #8790a3;
+  --brand:         #5b63d5;
+  --brand-2:       #7c7ff5;
+  --brand-soft:    #eceeff;
+  --accent:        #d6538f;
+  --success:       #2c9a5d;
+  --warning:       #d97757;
+  --code-bg:       #151a29;
+  --code-text:     #e5eaf7;
+  --code-key:      #ffb37a;
+  --shadow-sm:     0 3px 12px rgba(31, 41, 71, .05);
+  --shadow-md:     0 14px 34px rgba(31, 41, 71, .09);
+  --shadow-lg:     0 28px 60px rgba(31, 41, 71, .14);
+  color-scheme: light;
+}
+
+[data-theme="dark"] {
+  --bg:            #0b0f1c;
+  --bg-alt:        #0d1222;
+  --surface:       #141a2c;
+  --surface-2:     #171d33;
+  --surface-3:     #1c2340;
+  --border:        #26304a;
+  --border-strong: #3a4568;
+  --text:          #eef1fb;
+  --text-muted:    #adb5ce;
+  --text-soft:     #808aa5;
+  --brand:         #8b8dff;
+  --brand-2:       #a3a4ff;
+  --brand-soft:    rgba(139, 141, 255, .15);
+  --accent:        #ff8cc2;
+  --success:       #4ecb85;
+  --warning:       #ff9977;
+  --code-bg:       #060915;
+  --code-text:     #e6ebff;
+  --code-key:      #ffbf8a;
+  --shadow-sm:     0 3px 12px rgba(0, 0, 0, .35);
+  --shadow-md:     0 14px 34px rgba(0, 0, 0, .4);
+  --shadow-lg:     0 28px 60px rgba(0, 0, 0, .55);
+  color-scheme: dark;
+}
+
+/* Smooth theme transition */
+html { transition: background-color .25s ease, color .25s ease; }
+body,
+.navbar, .home-nav,
+.topic-card, .resource-card, .lesson-card, .quick-practice, .question-card,
+.vault-q, .vault-nav, .practice-card, .aws-deep-item, .home-topic-card,
+.home-hero-panel, .concept-menu a, .qa, .spark-path, footer, .theme-toggle {
+  transition: background-color .25s ease, color .25s ease, border-color .25s ease, box-shadow .25s ease;
+}
+
+/* ---------- BASE ---------- */
+body {
+  background: var(--bg) !important;
+  color: var(--text) !important;
+  font-feature-settings: "ss01", "cv11";
+}
+::selection { background: var(--brand-soft); color: var(--brand); }
+a { color: var(--brand); }
+
+/* ---------- NAVBAR ---------- */
+.navbar,
+.home-page .home-nav {
+  background: color-mix(in srgb, var(--surface) 90%, transparent) !important;
+  border-bottom: 1px solid var(--border) !important;
+  backdrop-filter: blur(16px);
+}
+.logo,
+.home-page .home-logo { color: var(--text) !important; }
+.logo span,
+.home-page .home-logo span { color: var(--brand) !important; }
+.nav-links a,
+.home-page .home-nav-links a { color: var(--text-muted) !important; font-weight: 600; }
+.nav-links a:hover,
+.home-page .home-nav-links a:hover { color: var(--brand) !important; }
+
+/* ---------- HERO SURFACES ---------- */
+.hero,
+.subject-hero,
+.interview-hero {
+  background:
+    radial-gradient(circle at 82% 22%, color-mix(in srgb, var(--brand) 22%, transparent), transparent 45%),
+    radial-gradient(circle at 20% 90%, color-mix(in srgb, var(--accent) 14%, transparent), transparent 45%),
+    linear-gradient(180deg, var(--surface) 0%, var(--surface-2) 100%) !important;
+  color: var(--text);
+}
+.hero h1,
+.subject-hero h1,
+.interview-hero h1 { color: var(--text) !important; }
+.hero h1 span,
+.subject-hero h1 span,
+.interview-hero h1 span { color: var(--brand) !important; }
+.hero-description,
+.hero-content > p:not(.tag) { color: var(--text-muted) !important; }
+.tag, .section-tag { color: var(--brand) !important; }
+.hero-orb { display: none !important; }
+
+/* ---------- BUTTONS ---------- */
+.primary-btn,
+.home-primary {
+  background: var(--brand) !important;
+  color: #fff !important;
+  box-shadow: var(--shadow-sm) !important;
+  border: none !important;
+}
+.primary-btn:hover,
+.home-primary:hover {
+  background: var(--brand-2) !important;
+  transform: translateY(-2px);
+}
+.secondary-btn,
+.home-text-btn {
+  background: var(--surface) !important;
+  color: var(--text-muted) !important;
+  border: 1px solid var(--border) !important;
+}
+.secondary-btn:hover { border-color: var(--brand) !important; color: var(--text) !important; }
+
+/* ---------- CARDS ---------- */
+.topic-card,
+.resource-card,
+.lesson-card,
+.quick-practice,
+.question-card,
+.vault-q,
+.practice-card,
+.aws-deep-item,
+.home-topic-card,
+.home-hero-panel,
+.spark-path {
+  background: var(--surface) !important;
+  border: 1px solid var(--border) !important;
+  color: var(--text) !important;
+  box-shadow: var(--shadow-sm) !important;
+}
+.topic-card:hover,
+.resource-card:hover,
+.topic-card-link:hover .topic-card,
+.home-topic-card:hover {
+  border-color: var(--brand) !important;
+  box-shadow: var(--shadow-md) !important;
+}
+.topic-card h3,
+.home-topic-card h3,
+.lesson-card h2, .lesson-card h4,
+.quick-practice h2,
+.section-header h2,
+.cluster-heading h2,
+.vault-heading h2 { color: var(--text) !important; }
+.topic-card p,
+.home-topic-card p,
+.lesson-card p,
+.section-header p,
+.quick-practice li,
+.question-card p,
+.vault-answer p,
+.aws-deep-item p { color: var(--text-muted) !important; }
+.topic-number,
+.explore-topic,
+.lesson-label { color: var(--brand) !important; }
+
+/* ---------- SECTION BACKGROUNDS ---------- */
+.topics-section,
+.spark-topics-section,
+.sql-topics-section,
+.interview-section { background: transparent !important; }
+.spark-study-tip,
+.python-study-tip,
+.sql-study-tip {
+  background: var(--surface) !important;
+  border-top: 1px solid var(--border) !important;
+}
+.spark-study-tip h2, .python-study-tip h2, .sql-study-tip h2 { color: var(--text) !important; }
+.spark-study-tip p:not(.section-tag),
+.python-study-tip p:not(.section-tag),
+.sql-study-tip p:not(.section-tag) { color: var(--text-muted) !important; }
+
+/* ---------- SPARK PATH STRIP ---------- */
+.spark-path { box-shadow: var(--shadow-md) !important; }
+.path-step strong { color: var(--text) !important; }
+.path-step small { color: var(--text-soft) !important; }
+.path-step > span { background: var(--brand-soft) !important; color: var(--brand) !important; }
+.path-arrow { color: var(--text-soft) !important; }
+
+/* ---------- SIDE MENU / CONCEPT NAV ---------- */
+.concept-menu a {
+  background: var(--surface) !important;
+  color: var(--text-muted) !important;
+  border-color: var(--border) !important;
+}
+.concept-menu a:hover {
+  color: var(--brand) !important;
+  border-color: var(--brand) !important;
+  background: var(--brand-soft) !important;
+}
+
+/* ---------- LESSON CODE BLOCKS ---------- */
+.lesson-card pre,
+.question-card pre,
+.vault-answer pre,
+.aws-deep-item pre,
+.pyspark-module pre,
+.practice-card pre {
+  background: var(--code-bg) !important;
+  border: 1px solid color-mix(in srgb, var(--code-text) 8%, transparent) !important;
+  border-radius: 10px !important;
+  padding: 16px 18px !important;
+  overflow-x: auto;
+  box-shadow: none !important;
+}
+.lesson-card pre code,
+.question-card pre code,
+.vault-answer pre code,
+.aws-deep-item pre code,
+.pyspark-module pre code,
+.practice-card pre code {
+  color: var(--code-text) !important;
+  font-family: "JetBrains Mono", "Fira Code", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace !important;
+  font-size: 13px !important;
+  line-height: 1.6 !important;
+}
+/* inline code */
+.lesson-card p code,
+.quick-practice li code,
+.question-card p code,
+.vault-answer p code,
+.aws-deep-item p code,
+.qa p code {
+  background: var(--brand-soft) !important;
+  color: var(--brand) !important;
+  padding: 2px 7px;
+  border-radius: 5px;
+  font-family: "JetBrains Mono", "Fira Code", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: .92em;
+}
+
+/* ---------- Q&A BLOCKS (the invisible-text fix) ---------- */
+.qa {
+  background: var(--surface) !important;
+  border: 1px solid var(--border) !important;
+  box-shadow: var(--shadow-sm) !important;
+  border-left: 3px solid var(--brand) !important;
+}
+.qa h4 { color: var(--text) !important; font-size: 15px; }
+.qa p { color: var(--text-muted) !important; line-height: 1.7; }
+.qa strong { color: var(--text) !important; }
+.architecture-qa .qa {
+  background: var(--surface) !important;
+  border-color: var(--border) !important;
+  border-left-color: var(--warning) !important;
+}
+.architecture-qa .qa h4 { color: var(--text) !important; }
+
+/* ---------- INTERVIEW VAULT (Spark) ---------- */
+.vault-stats span {
+  background: var(--brand-soft) !important;
+  border: 1px solid color-mix(in srgb, var(--brand) 25%, transparent) !important;
+  color: var(--text) !important;
+}
+.vault-stats b { color: var(--brand) !important; }
+.vault-nav {
+  background: var(--surface) !important;
+  border-color: var(--border) !important;
+  box-shadow: var(--shadow-sm) !important;
+}
+.vault-nav > b { color: var(--brand) !important; }
+.vault-nav a { color: var(--text-muted) !important; }
+.vault-nav a:hover { color: var(--brand) !important; background: var(--brand-soft) !important; }
+.vault-heading p { color: var(--brand) !important; }
+.vault-heading > b {
+  background: var(--brand-soft) !important;
+  border-color: color-mix(in srgb, var(--brand) 25%, transparent) !important;
+  color: var(--brand) !important;
+}
+.vault-q { background: var(--surface) !important; border-color: var(--border) !important; }
+.vault-q summary { color: var(--text) !important; }
+.vault-q summary span { background: var(--brand-soft) !important; color: var(--brand) !important; }
+.vault-q summary i { color: var(--brand) !important; }
+.vault-q[open] summary { background: var(--brand-soft) !important; color: var(--brand) !important; }
+.vault-answer { border-top-color: var(--border) !important; }
+.vault-answer strong { color: var(--brand) !important; }
+.vault-answer p { color: var(--text-muted) !important; }
+.vault-answer pre { background: var(--code-bg) !important; }
+.vault-answer pre code { color: var(--code-text) !important; }
+
+/* ---------- INTERVIEW QUESTION CARDS (SQL / Python) ---------- */
+.question-summary { color: var(--text) !important; }
+.question-summary h3 { color: var(--text) !important; }
+.question-card h3 { color: var(--text) !important; }
+.question-card .question-meta { color: var(--text-muted) !important; }
+.question-card .topic-chip { color: var(--brand) !important; font-weight: 700; }
+.answer-toggle {
+  background: var(--brand-soft) !important;
+  color: var(--brand) !important;
+  border: 1px solid var(--border) !important;
+}
+.answer-toggle:hover { background: color-mix(in srgb, var(--brand) 18%, transparent) !important; }
+.answer-content {
+  background: var(--brand-soft) !important;
+  border-left-color: var(--brand) !important;
+  color: var(--text) !important;
+}
+.answer-content p { color: var(--text-muted) !important; }
+.reveal-answer { color: var(--brand) !important; }
+.question-card[open] .reveal-answer:after { color: var(--brand); }
+.answer-content { border-top-color: var(--border) !important; }
+.question-card strong { color: var(--text) !important; }
+.question-card em { color: var(--accent) !important; font-style: normal; font-weight: 700; }
+.cluster-heading > span {
+  background: var(--brand-soft) !important;
+  color: var(--brand) !important;
+  box-shadow: none !important;
+}
+.cluster-heading p { color: var(--brand) !important; }
+
+/* ---------- INTERVIEW TOPIC QUICK-NAV ---------- */
+.interview-topic-grid a {
+  background: var(--surface) !important;
+  color: var(--text) !important;
+  border-color: var(--border) !important;
+  box-shadow: var(--shadow-sm) !important;
+}
+.interview-topic-grid a:hover {
+  background: var(--brand-soft) !important;
+  border-color: var(--brand) !important;
+  box-shadow: var(--shadow-md) !important;
+}
+.interview-topic-grid small { color: var(--text-soft) !important; }
+
+/* ---------- PRACTICE MODE CONTROLS ---------- */
+.filter-btn {
+  background: var(--surface) !important;
+  color: var(--text-muted) !important;
+  border-color: var(--border) !important;
+}
+.filter-btn:hover,
+.filter-btn.active {
+  background: var(--brand-soft) !important;
+  color: var(--brand) !important;
+  border-color: var(--brand) !important;
+}
+.random-btn {
+  background: var(--brand) !important;
+  color: #fff !important;
+  border-color: var(--brand) !important;
+}
+.practice-meta span {
+  background: var(--brand-soft) !important;
+  color: var(--brand) !important;
+}
+
+/* ---------- HOME PAGE ---------- */
+.home-page { background: var(--bg) !important; color: var(--text) !important; }
+.home-hero h1 { color: var(--text) !important; }
+.home-hero h1 em { color: var(--brand) !important; }
+.home-hero-copy > p { color: var(--text-muted) !important; }
+.home-hero-panel { background: var(--surface) !important; }
+.home-panel-top { color: var(--text-soft) !important; border-bottom-color: var(--border) !important; }
+.home-panel-top b { color: var(--brand) !important; }
+.home-roadmap-row { border-bottom-color: var(--border) !important; }
+.home-roadmap-row b { color: var(--text) !important; }
+.home-roadmap-row small { color: var(--text-soft) !important; }
+.roadmap-icon,
+.home-card-icon { background: var(--brand-soft) !important; }
+.home-card-status { background: var(--brand-soft) !important; color: var(--brand) !important; }
+.home-section-heading h2,
+.home-start-intro h2,
+.home-coming h2 { color: var(--text) !important; }
+.home-section-heading p,
+.home-start-intro p,
+.home-coming p { color: var(--brand) !important; }
+.home-section-heading > span { color: var(--text-soft) !important; }
+.home-section-heading > span b { color: var(--text) !important; }
+
+/* ---------- SQL / SPARK TOPIC GRIDS ---------- */
+.sql-grid .topic-card,
+.spark-grid .topic-card {
+  background: var(--surface) !important;
+  border-color: var(--border) !important;
+  color: var(--text) !important;
+}
+.sql-grid h3, .spark-grid h3 { color: var(--text) !important; }
+.sql-grid p, .spark-grid p { color: var(--text-muted) !important; }
+.sql-grid .explore-topic { color: var(--brand) !important; }
+.spark-grid .explore-topic { color: var(--warning) !important; }
+.sql-grid .topic-number { color: var(--brand) !important; }
+.spark-grid .topic-number { color: var(--warning) !important; }
+.sql-grid .interview-card,
+.spark-grid .interview-card {
+  background: linear-gradient(145deg,
+    color-mix(in srgb, var(--brand) 12%, var(--surface)),
+    var(--surface)) !important;
+  border-color: color-mix(in srgb, var(--brand) 35%, var(--border)) !important;
+}
+
+/* Coming Soon dim */
+.coming-link .topic-card { opacity: 0.7; filter: saturate(0.7); }
+.coming-link .topic-card:hover { transform: none; }
+
+/* ---------- CTA STRIPS ---------- */
+.sql-interview-cta {
+  background: var(--brand-soft) !important;
+  border-color: color-mix(in srgb, var(--brand) 30%, transparent) !important;
+  color: var(--brand) !important;
+}
+.sql-interview-cta span { color: var(--brand) !important; }
+
+/* ---------- FOOTER ---------- */
+footer {
+  background: var(--surface) !important;
+  color: var(--text-muted) !important;
+  border-top: 1px solid var(--border) !important;
+}
+footer p { color: var(--text-muted) !important; }
+footer .logo { color: var(--text) !important; }
+footer .logo span { color: var(--brand) !important; }
+footer .copyright { color: var(--text-soft) !important; }
+
+/* ---------- AWS ORANGE HERO � keep readable in both themes ---------- */
+[data-theme="dark"] .aws-hero,
+[data-theme="dark"] .aws-complete-hero { color: #fff !important; }
+.aws-flow span { color: var(--text) !important; background: var(--surface-3) !important; border-color: var(--border) !important; }
+.aws-flow b { color: var(--warning) !important; }
+
+/* =========================================================
+   DAY / NIGHT TOGGLE BUTTON
+========================================================= */
+.theme-toggle {
+  --size: 40px;
+  width: var(--size);
+  height: var(--size);
+  display: inline-grid;
+  place-items: center;
+  background: var(--brand-soft);
+  color: var(--brand);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  cursor: pointer;
+  padding: 0;
+  margin-left: 8px;
+  font-size: 18px;
+  line-height: 1;
+  transition: transform .2s ease, background-color .2s ease, border-color .2s ease;
+}
+.theme-toggle:hover {
+  transform: translateY(-2px) rotate(-8deg);
+  border-color: var(--brand);
+  background: color-mix(in srgb, var(--brand) 16%, transparent);
+}
+.theme-toggle:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
+}
+.theme-toggle .icon-sun,
+.theme-toggle .icon-moon { display: block; }
+[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
+:root:not([data-theme="dark"]) .theme-toggle .icon-sun { display: none; }
+
+.nav-links,
+.home-nav-links {
+  align-items: center;
+}
+
+@media (max-width: 640px) {
+  .theme-toggle { --size: 36px; font-size: 16px; margin-left: 4px; }
+}
+
+/* ---------- Small aesthetic details ---------- */
+/* Softer headings, tightened body rhythm */
+h1, h2, h3, h4 { letter-spacing: -0.01em; }
+.lesson-card, .quick-practice, .question-card, .vault-q, .topic-card { border-radius: 14px !important; }
+.lesson-card { padding: 34px !important; }
+@media (max-width: 640px) {
+  .lesson-card { padding: 22px !important; }
+}
+
